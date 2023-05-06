@@ -1,0 +1,20 @@
+{
+  "name": "mahiro-plugin-manager",
+  "version": "0.1.0",
+  "author": "spirit",
+  "description": "mahiro plugin manager with some hack operation",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsc --declarationMap false",
+    "tsc:check": "tsc --noEmit"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "peerDependencies": {
+    "mahiro": "^10.0.0"
+  }
+}
