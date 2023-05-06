@@ -1,4 +1,4 @@
-# Mahiro Memes
+# Mahiro Plugin Manager
 
 使用于 [Mahiro](https://github.com/opq-osc/mahiro) 的插件管理组件，拥有一些hack指令。
 
