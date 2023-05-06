@@ -66,8 +66,7 @@ export default function registerGroup (config: pluginProps, mahiro: Mahiro, logg
 
       if (data.msg.Content?.startsWith('开启插件')) {
         const pluginName = data.msg.Content.replace('开启插件', '').trim()
-        const plugin = allPlugins.filter(i => i.name === pluginName)[0]
-        if (plugin?.enabled === false) {
+        if (closedPlugins.includes(pluginName)) {
           await mahiro.db.openPlugin({
             groupId: data.groupId,
             pluginName
@@ -80,8 +79,7 @@ export default function registerGroup (config: pluginProps, mahiro: Mahiro, logg
 
       if (data.msg.Content?.startsWith('关闭插件')) {
         const pluginName = data.msg.Content.replace('关闭插件', '').trim()
-        const plugin = allPlugins.filter(i => i.name === pluginName)[0]
-        if (plugin?.enabled === false) {
+        if (availablePlugins.includes(pluginName)) {
           mahiro.db.closePlugin({
             groupId: data.groupId,
             pluginName
