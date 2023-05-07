@@ -40,7 +40,7 @@ export default function Plugin (props: pluginProps) {
       return
     }
 
-    const config = { superAdmins, duration: expireTime, ignoreGroups }
+    const config = { superAdmins, expireTime, ignoreGroups }
     registerFriend(config, mahiro, logger)
     registerGroup(config, mahiro, logger)
 

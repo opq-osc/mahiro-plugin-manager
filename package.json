@@ -1,6 +1,6 @@
 {
   "name": "mahiro-plugin-manager",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "spirit",
   "description": "mahiro plugin manager with some hack operation",
   "files": [

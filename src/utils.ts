@@ -7,7 +7,7 @@ export function getHelp (type: 'friend' | 'group'): string {
       doc += `添加群xxx、初始化所有群、插件列表、为所有群开启插件xx、为所有群关闭插件xx`
       break
     default:
-      doc += `插件列表、开启所有插件、关闭所有插件、开启插件、关闭插件、添加群管、移除群管`
+      doc += `插件列表、开启所有插件、关闭所有插件、开启插件xx、关闭插件xx、添加群管@xx、移除群管@xx`
       break
   }
   return doc
