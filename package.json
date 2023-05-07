@@ -1,6 +1,6 @@
 {
   "name": "mahiro-plugin-manager",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "spirit",
   "description": "mahiro plugin manager with some hack operation",
   "files": [
@@ -15,6 +15,6 @@
   "keywords": [],
   "license": "MIT",
   "peerDependencies": {
-    "mahiro": "^10.0.0"
+    "mahiro": "*"
   }
 }
