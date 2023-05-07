@@ -95,7 +95,10 @@ export default function registerGroup (config: pluginProps, mahiro: Mahiro, logg
       const groupInfo = await mahiro.db.getGroupMapFromCache(data.groupId)
       await updateGroupName()
 
-      if (!groupInfo.admins.concat(superAdmins).includes(data.userId)) return
+      if (!superAdmins.includes(data.userId)) {
+        sendText('∴你不是我的主人')
+        return
+      }
 
       for (const user of data.msg.AtUinLists) {
         const target = user.Uin
@@ -112,13 +115,14 @@ export default function registerGroup (config: pluginProps, mahiro: Mahiro, logg
       const groupInfo = await mahiro.db.getGroupMapFromCache(data.groupId)
       await updateGroupName()
 
-      if (!groupInfo.admins.concat(superAdmins).includes(data.userId)) return
+      if (!superAdmins.includes(data.userId)) {
+        sendText('∴你不是我的主人')
+        return
+      }
 
       for (const user of data.msg.AtUinLists) {
         const target = user.Uin
-        if (!groupInfo.admins.includes(target)) {
-          groupInfo.admins.push(target)
-        }
+        groupInfo.admins = groupInfo.admins.filter((i) => i != target)
       }
       await mahiro.db.updateGroup(groupInfo)
       sendText(`移除成功`)
