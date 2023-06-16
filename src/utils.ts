@@ -26,35 +26,41 @@ export async function closeAllPluginsInGroup (mahiro: Mahiro, groupId: number) {
   }
 }
 
-export async function initAllGroup (mahiro: Mahiro, ignoreGroups: number[]) {
+export async function initAllGroup (mahiro: Mahiro, linkQQ: number, ignoreGroups: number[]) {
   const groups = await mahiro.db.getGroups()
   for (const group of groups) {
     if (!ignoreGroups.includes(group.group_id)) {
-      await openAllPluginsInGroup(mahiro, group.group_id)
+      if (group.link_qqs.includes(linkQQ)) {
+        await openAllPluginsInGroup(mahiro, group.group_id)
+      }
     }
   }
 }
 
-export async function openPluginInAllGroup (mahiro: Mahiro, pluginName: string, ignoreGroups: number[]) {
+export async function openPluginInAllGroup (mahiro: Mahiro, pluginName: string, linkQQ: number, ignoreGroups: number[]) {
   const groups = await mahiro.db.getGroups()
   for (const group of groups) {
     if (!ignoreGroups.includes(group.group_id)) {
-      await mahiro.db.openPlugin({
-        groupId: group.group_id,
-        pluginName
-      })
+      if (linkQQ === 0 || group.link_qqs.includes(linkQQ)) {
+        await mahiro.db.openPlugin({
+          groupId: group.group_id,
+          pluginName
+        })
+      }
     }
   }
 }
 
-export async function closePluginInAllGroup (mahiro: Mahiro, pluginName: string, ignoreGroups: number[]) {
+export async function closePluginInAllGroup (mahiro: Mahiro, pluginName: string, linkQQ: number, ignoreGroups: number[]) {
   const groups = await mahiro.db.getGroups()
   for (const group of groups) {
     if (!ignoreGroups.includes(group.group_id)) {
-      await mahiro.db.closePlugin({
-        groupId: group.group_id,
-        pluginName
-      })
+      if (group.link_qqs.includes(linkQQ)) {
+        await mahiro.db.closePlugin({
+          groupId: group.group_id,
+          pluginName
+        })
+      }
     }
   }
 }

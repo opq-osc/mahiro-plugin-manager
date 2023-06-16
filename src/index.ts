@@ -25,7 +25,7 @@ export default function Plugin (props: pluginProps) {
       plugin.white_list_users = superAdmins
       await mahiro.db.updatePlugin(plugin)
     }
-    await openPluginInAllGroup(mahiro, pluginName, ignoreGroups)
+    await openPluginInAllGroup(mahiro, pluginName, 0, ignoreGroups)
   })
 
   const use: IMahiroUse = async (mahiro) => {

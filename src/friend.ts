@@ -47,7 +47,7 @@ export default function registerFriend (config: pluginProps, mahiro: Mahiro, log
      */
     if (data?.msg?.Content === '初始化所有群') {
       if (!superAdmins.includes(data.userId)) return
-      await initAllGroup(mahiro, ignoreGroups)
+      await initAllGroup(mahiro, data.qq, ignoreGroups)
       sendText(`初始化成功，注意：所有群的所有插件已开启！`)
       return
     }
@@ -67,7 +67,7 @@ export default function registerFriend (config: pluginProps, mahiro: Mahiro, log
       if (data?.msg?.Content.startsWith('为所有群开启插件')) {
         const pluginName = data.msg.Content.replace('为所有群开启插件', '').trim()
         if (allPlugins.some((i) => i.name === pluginName)) {
-          await openPluginInAllGroup(mahiro, pluginName, ignoreGroups)
+          await openPluginInAllGroup(mahiro, pluginName, data.qq, ignoreGroups)
           sendText(`开启成功，注意：所有群的${pWrapper(pluginName)}插件已开启！`)
         }
         return
@@ -76,7 +76,7 @@ export default function registerFriend (config: pluginProps, mahiro: Mahiro, log
       if (data?.msg?.Content.startsWith('为所有群关闭插件')) {
         const pluginName = data.msg.Content.replace('为所有群关闭插件', '').trim()
         if (allPlugins.some((i) => i.name === pluginName)) {
-          await closePluginInAllGroup(mahiro, pluginName, ignoreGroups)
+          await closePluginInAllGroup(mahiro, pluginName, data.qq, ignoreGroups)
           sendText(`关闭成功，注意：所有群的${pWrapper(pluginName)}插件已关闭！`)
         }
         return
